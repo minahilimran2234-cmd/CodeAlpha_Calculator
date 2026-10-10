@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexus Scientific Calculator | CodeAlpha</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Background Elements -->
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-glow" aria-hidden="true"></div>
+
+  <main class="app-container">
+    <!-- Top Bar -->
+    <header class="top-bar">
+      <div class="brand">
+        <span class="brand__icon">◈</span>
+        <span class="brand__name">NEXUS</span>
+      </div>
+      <div class="controls">
+        <button id="themeToggle" class="icon-btn" aria-label="Toggle Theme" title="Change Theme">🎨</button>
+        <button id="historyToggle" class="icon-btn" aria-label="Toggle History" title="View History">🕒</button>
+      </div>
+    </header>
+
+    <!-- Calculator Body (3D Tilt Target) -->
+    <div class="calculator-wrapper" id="tiltWrapper">
+      <section class="calculator" role="application" aria-label="Scientific Calculator">
+        
+        <!-- Display -->
+        <div class="display">
+          <div class="display__expression" id="expression"></div>
+          <div class="display__value" id="value">0</div>
+        </div>
+
+        <!-- Mode Toggle -->
+        <div class="mode-bar">
+          <button id="sciToggle" class="mode-btn">
+            <span>Scientific</span>
+            <span class="toggle-switch"></span>
+          </button>
+        </div>
+
+        <!-- Keypad -->
+        <div class="keypad" id="keypad">
+          
+          <!-- Scientific Row 1 (compact) -->
+          <button class="key key--sci" data-action="insert" data-value="sin(">sin</button>
+          <button class="key key--sci" data-action="insert" data-value="cos(">cos</button>
+          <button class="key key--sci" data-action="insert" data-value="tan(">tan</button>
+          <button class="key key--sci" data-action="insert" data-value="^">x^y</button>
+
+          <!-- Scientific Row 2 (compact) -->
+          <button class="key key--sci" data-action="insert" data-value="log(">log</button>
+          <button class="key key--sci" data-action="insert" data-value="ln(">ln</button>
+          <button class="key key--sci" data-action="insert" data-value="√(">√</button>
+          <button class="key key--sci" data-action="insert" data-value="π">π</button>
+
+          <!-- Scientific Row 3 (compact) -->
+          <button class="key key--sci" data-action="insert" data-value="e">e</button>
+          <button class="key key--sci" data-action="insert" data-value="^2">x²</button>
+          <button class="key key--sci" data-action="insert" data-value="^3">x³</button>
+          <button class="key key--sci" data-action="insert" data-value="^(-1)">x⁻¹</button>
+
+          <!-- Standard Keys -->
+          <button class="key key--utility" data-action="clear">AC</button>
+          <!-- FIX: Delete button ka sign yahan add kar diya hai -->
+          <button class="key key--utility" data-action="delete">⌫</button>
+          <button class="key key--utility" data-action="insert" data-value="(">(</button>
+          <button class="key key--utility" data-action="insert" data-value=")">)</button>
+
+          <button class="key key--num" data-action="insert" data-value="7">7</button>
+          <button class="key key--num" data-action="insert" data-value="8">8</button>
+          <button class="key key--num" data-action="insert" data-value="9">9</button>
+          <button class="key key--op" data-action="insert" data-value="÷">÷</button>
+
+          <button class="key key--num" data-action="insert" data-value="4">4</button>
+          <button class="key key--num" data-action="insert" data-value="5">5</button>
+          <button class="key key--num" data-action="insert" data-value="6">6</button>
+          <button class="key key--op" data-action="insert" data-value="×">×</button>
+
+          <button class="key key--num" data-action="insert" data-value="1">1</button>
+          <button class="key key--num" data-action="insert" data-value="2">2</button>
+          <button class="key key--num" data-action="insert" data-value="3">3</button>
+          <button class="key key--op" data-action="insert" data-value="-">−</button>
+
+          <button class="key key--num" data-action="insert" data-value="0">0</button>
+          <button class="key key--num" data-action="insert" data-value=".">.</button>
+          <button class="key key--op" data-action="insert" data-value="%">%</button>
+          <button class="key key--op" data-action="insert" data-value="+">+</button>
+
+          <!-- Equals (full width) -->
+          <button class="key key--equals" data-action="evaluate">=</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- History Sidebar -->
+    <aside class="history-panel" id="historyPanel">
+      <div class="history-header">
+        <h3>History</h3>
+        <button id="clearHistory" class="text-btn">Clear All</button>
+      </div>
+      <div class="history-list" id="historyList">
+        <div class="history-empty">No calculations yet</div>
+      </div>
+    </aside>
+    
+    <!-- Overlay for mobile history -->
+    <div class="overlay" id="overlay"></div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
